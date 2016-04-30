@@ -1,0 +1,45 @@
+=head1 NAME
+
+ - 
+
+=head1 VERSION
+
+Version 0.0.1
+
+=head1 SYNOPSIS
+ 
+    use ::;
+  
+=head1 DESCRIPTION
+
+
+
+=head1 DIAGNOSTICS
+
+
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+
+
+=head1 DEPENDENCIES
+
+
+
+=head1 INCOMPATIBILITIES
+
+
+
+=head1 BUGS AND LIMITATIONS
+
+There are no known bugs in this module.
+Please report problems to WisdomFusion <WisdomFusion@gmail.com>
+Fixes are welcome.
+ 
+=head1 AUTHOR
+
+WisdomFusion <WisdomFusion@gmail.com>
+
+=head1 LICENSE AND COPYRIGHT
+ 
+Copyright (c) 2016 WisdomFusion <WisdomFusion@gmail.com>. All rights reserved.
