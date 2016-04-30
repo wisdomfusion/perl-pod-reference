@@ -33,7 +33,9 @@ Version 0.0.1
 =head1 BUGS AND LIMITATIONS
 
 There are no known bugs in this module.
+
 Please report problems to WisdomFusion <WisdomFusion@gmail.com>
+
 Fixes are welcome.
  
 =head1 AUTHOR
