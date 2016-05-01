@@ -1,26 +1,239 @@
+=encoding utf8
+
 =head1 Perl POD 语法参考
 
-POD 是 Perl 及模块命使用的文档格式，全称 Plain Old Documentation。本文总结一下 POD 文档的语法，不断补充完善，以作参考文档。
+POD 是 Perl 及模块使用的文档格式，全称 Plain Old Documentation。
+
+Perl 其中一个亮点特性，就是 POD 这个便捷的文档格式，简单文档说明，甚至撰写整本
+书 ，都没有问题。本文将重点总结 POD 语法及最佳实践，同时会罗列一些 POD 周边的
+工具，不断完善更新。
+
+=head2 简介
+
+尽管绝大多数猿/媛们都希望自己写的一手清晰、漂亮的文档，但多数都苦于没时间去学
+习现有比较“复杂”的文档处理或排版系统，而且技术文档如果想加入版本控制 Word 等文
+件格式肯定是不能用的。代码能够很欢快的运行，相信对大家都不是难事，我们擅长的就
+是编码，不是吗？但如果文档跟不长，项目时间长久以后，或是代码移交其他，或是
+GitHub 上进行社会化编程，没有文档可是不行的。幸运的是，Perl 提供了这样一种简单
+而又优雅的文档格式，就是 POD。
+
+POD 是一种简单的文本文档格式，它定义了一系列标记，用于组织和格式化文档，有了这
+些标记，使用 Perl 或其他转移工具，可以生成美丽漂亮大方的文档或书籍。而且，这些
+标记文本还可以嵌入到我们的代码文件中去，Perl 解释器在运行代码时会忽略它们，同
+样，如果你用 POD 转换工具去解析这些代码文件，它会忽略代码部分，转而去处理 POD
+文档，这样，极大地方便了我们代码的注释和文档生成。
+
+POD 文档在 Perl 中随处可见，最常用的，比如 perldoc 查看 Perl 
+
+    perldoc LWP
+
+POD 文档转换工具后文会总结。
+
+=head2 POD 语法
+
+POD 是一种类似简单的标记语法文档，文档由以下3种类型的段落构成：
+
+=over 4
+
+=item Ordinary 段落
+
+这种段落是最常用的行文段落，可以添加一些加粗、斜体、代码、链接等格式的文本
+
+=item Verbatim 段落
+
+这种段落通常用于显示代码块或是其他不需要格式“原样显示”的文本
+
+=item Command 段落
+
+这就是上文所说的标记们，所有的标记都以 = 开头，紧跟命令（中间不能带空格的），命令列表如下：
+
+=back
+
+    =pod
+    =head1 Heading Text
+    =head2 Heading Text
+    =head3 Heading Text
+    =head4 Heading Text
+    =over indentlevel
+    =item stuff
+    =back
+    =begin format
+    =end format
+    =for format text...
+    =encoding type
+    =cut
+
+
+标题 =head<标题级别>
+
+This tag formats the paragraph that follows as a heading. The level is determined by a number that directly follows =head.  In other words, you'll have to replace the x  in =headx for the level you want. For example, a top level heading would be
+
+    =head1 一级标题
+    
+    =head2 二级标题
+
+
+项目编号 =item, =over, =back
+
+    =over 4
+
+    =item *
+
+    First item
+
+    =item *
+
+    Second item
+
+    =back
+
+    =over
+
+    =item Foo()
+
+    Description of Foo function
+
+    =item Bar()
+
+    Description of Bar function
+
+    =back
+
+文本格式化
+
+=over 4
+
+=item C<I<text>> -- 斜体
+
+用于强调和参数
+
+=item C<B<text>> -- 加粗
+
+用于强调、开关、程序或其他
+
+=item C<C<code here>> -- 代码
+
+=item C<L<name>> -- 链接
+
+=over 8
+
+=item C<L<name>>
+
+=item C<L<name/"sec">> 或 C<L<name/sec>>
+
+=item C<L</"sec">> 或 C<L<name/sec>>
+
+=back
+
+=item C<E<escape>> -- 字符转义
+
+类似 HTML/XML 的实体
+
+=item C<F<filename>> -- 文件名
+
+=item C<S<text>> -- 禁目换行
+
+如 C<S<$x ? $y : $z>>
+
+=item C<X<topic name>> -- 索引名
+
+=item C<Z<>>
+
+=back
+
+
+
+文档编码 =encoding type
+
+    =encoding latin1
+    
+    =encoding utf8
+    
+    =encoding koi8-r
+    
+    =encoding ShiftJIS
+    
+    =encoding big5
+
+
+在 Perl 代码中使用 POD
+
+代码中使用 POD 时最重要的是 =cut 这个标记，不管是标题还是自定义的文档块，都要有 =cut 结束该文档块。代码中可以使用 =headx 这种标题标记，记住结束标记 =cut，同样，自定义的文档块 ={自定义标记} 结束时也不能忘了加 =cut。如下，展示了一个文档中使用 POD 的实例：
+
+
+
+有时我们为了快速测试代码效果，我们也可以在代码底部添加 POD 文档区，作为 <DATA> 文件句柄的输入内容，当然，也可以直接使用 __END__ 或 __DATA__ 。
+
+    __END__
+    =head1 NAME
+    Time::Local - efficiently compute time from local and GMT time
+
+模块 POD 文档模板：点这里
+
+=head2 最佳实践
+
+
 
 =head2 POD 常用模块
 
 CPAN 上有很多 POD 解析模块，这里罗列几个推荐模块：
 
-Pod::Simple - POD 解析框架
+=over 4
 
-Test::Pod - 检测 POD 文件中的语法错误
+=item * Pod::Simple - POD 解析框架
 
-Pod::Weaver weave together a Pod document from an outline.
+=item * Test::Pod - 检测 POD 文件中的语法错误
 
-Pod::Perldoc - perldoc 命令使用的 POD 模块，用于查找 POD 文档中所需的 Perl 文
-档。
+=item * Pod::Weaver weave together a Pod document from an outline.
 
-Pod::Html - 把 POD 文档转换为 HTML 文件，Perl 核心模块，提供 pod2html 命令。
+=item * Pod::Perldoc - perldoc 命令使用的 POD 模块，用于查找 POD 文档中所需的
+Perl 文档。
 
-=head2 POD 语法
+=item * Pod::Html - 把 POD 文档转换为 HTML 文件，Perl 核心模块，提供 pod2html
+命令。
 
+=back
 
-=head2 Best Practice
+=head2 POD 相关工具
 
+=head3 使用 perldoc
+
+Perldoc is a pod utility that formats and displays pod information. You use it from the command line, and the syntax is like this
+
+perldoc [options] docname
+
+Docname is the name of the file you want to view.  If you would like to see the information on CGI.pm, for instance, you'd type
+
+perldoc CGI.pm
+
+You'd have to modify the path, of course, but the documentation in all its glory would be made available to you.
+
+As I mentioned earlier, you can use perldoc for a quick reference to Perl functions. Type
+
+perldoc -f function_name
+
+and you'll have all the information available on the function usage and parameters. Its really handy for learning the functions, as well as for those times when your brain pops into neutral at a critical moment. There are other options for using perldoc, and you can learn more about them by typing
+
+perldoc perldoc
+
+=head3 使用 pod2html
+
+Another good pod utility to know about is pod2html. It converts pod information into HTML format so you can see it from your browser. For example, if you'd like the documentation for CGI.pm saved to an HTML file, you'd have all that wonderful information available when you need it, all nicely formatted with links, you'd type:
+
+pod2html CGI.pm -outfile CGIpm.html
+
+=head3 其他 POD 工具
+
+=over 4
+
+=item * pod2fm - 把 POD 文档转换为 FrameMaker 格式
+
+=item * pod2latex - 转换为 LaTeX 格式
+
+=item * pod2man - 转换成 UNIX man 手册格式
+
+=item * pod2text - 转换成文本文档
+
+=back
 
 
