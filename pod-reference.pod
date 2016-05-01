@@ -4,7 +4,7 @@ POD 是 Perl 及模块命使用的文档格式，全称 Plain Old Documentation�
 
 =head2 POD 常用模块
 
-CPAN 上有很多 POD 解析模块，这里罗表几个推荐模块：
+CPAN 上有很多 POD 解析模块，这里罗列几个推荐模块：
 
 Pod::Simple - POD 解析框架
 
