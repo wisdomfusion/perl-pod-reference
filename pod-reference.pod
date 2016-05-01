@@ -1,0 +1,26 @@
+=head1 Perl POD 语法参考
+
+POD 是 Perl 及模块命使用的文档格式，全称 Plain Old Documentation。本文总结一下 POD 文档的语法，不断补充完善，以作参考文档。
+
+=head2 POD 常用模块
+
+CPAN 上有很多 POD 解析模块，这里罗表几个推荐模块：
+
+Pod::Simple - POD 解析框架
+
+Test::Pod - 检测 POD 文件中的语法错误
+
+Pod::Weaver weave together a Pod document from an outline.
+
+Pod::Perldoc - perldoc 命令使用的 POD 模块，用于查找 POD 文档中所需的 Perl 文
+档。
+
+Pod::Html - 把 POD 文档转换为 HTML 文件，Perl 核心模块，提供 pod2html 命令。
+
+=head2 POD 语法
+
+
+=head2 Best Practice
+
+
+
