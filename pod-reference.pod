@@ -144,8 +144,8 @@ C< =headI<x> >
 
 =back
 
-有时候可能会觉得字符转义比较头疼，是的，下面这几行代码效果都是 C<$a
-E<lt>=E<gt> $b>：
+文档中出现代码和命令是常有的事，有时候可能会觉得字符转义比较头疼。是的，下面这
+几行代码效果都是 C<$a E<lt>=E<gt> $b>：
 
     C<$a E<lt>=E<gt> $b>
     C<< $a <=> $b >>
@@ -156,21 +156,14 @@ E<lt>=E<gt> $b>：
     C<<< $a <=> $b >>>
     C<<<<  $a <=> $b     >>>>
 
-
-open(X, ">>thing.dat") || die $!
-
-$foo->bar();
-
-C<open(X, ">>thing.dat") || die $!>
-
-C<$foo->bar();>
+不过
 
 C<<< open(X, ">>thing.dat") || die $! >>>
-
 C<< $foo->bar(); >>
 
-C<open(X, "E<gt>E<gt>thing.dat") || die $!>
+但是
 
+C<open(X, "E<gt>E<gt>thing.dat") || die $!>
 C<$foo-E<gt>bar();>
 
 
