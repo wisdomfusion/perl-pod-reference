@@ -106,25 +106,25 @@ C< =headI<x> >
 
 =over 4
 
-=item C<< I<text> >> -- 斜体
+=item C<< IE<lt>textE<gt> >> -- 斜体
 
 用于强调和参数
 
-=item C<< B<text> >> -- 加粗
+=item C<< BE<lt>textE<gt> >> -- 加粗
 
 用于强调、开关、程序或其他
 
-=item C<< C<code here> >> -- 代码
+=item C<< CE<lt>code hereE<gt> >> -- 代码
 
-=item C<< L<name> >> -- 链接
+=item C<< LE<lt>nameE<gt> >> -- 链接
 
 =over 8
 
-=item C<< L<name> >>
+=item C<< LE<lt>nameE<gt> >>
 
-=item C<< L<name/"sec"> >> 或 C<< L<name/sec> >>
+=item C<< LE<lt>name/"sec"E<gt> >> 或 C<< LE<lt>name/secE<gt> >>
 
-=item C<< L</"sec"> >> 或 C<< L<name/sec> >>
+=item C<< LE<lt>/"sec"E<gt> >> 或 C<< LE<lt>name/secE<gt> >>
 
 =back
 
@@ -132,17 +132,34 @@ C< =headI<x> >
 
 类似 HTML/XML 的实体
 
-=item C<<< F<filename> >>> -- 文件名
+=item C<< FE<lt>filenameE<gt> >> -- 文件名
 
-=item C<< S<text> >> -- 禁目换行
+=item C<< SE<lt>textE<gt> >> -- 禁目换行
 
-如 C<< S<$x ? $y : $z> >>
+如 C<< SE<lt>$x ? $y : $zE<gt> >>
 
-=item C<< X<topic name> >> -- 索引名
+=item C<< XE<lt>topic nameE<gt> >> -- 索引名
 
-=item C<< Z<> >>
+=item C<< ZE<lt>E<gt> >>
 
 =back
+
+C<$a E<lt>=E<gt> $b>
+C<< $a <=> $b >>
+C<<< $a <=> $b >>>
+C<<<<  $a <=> $b     >>>>
+C<$a E<lt>=E<gt> $b>
+C<< $a E<lt>=E<gt> $b >>
+
+
+    open(X, ">>thing.dat") || die $!
+    $foo->bar();
+
+    C<<< open(X, ">>thing.dat") || die $! >>>
+    C<< $foo->bar(); >>
+
+    C<open(X, "E<gt>E<gt>thing.dat") || die $!>
+    C<$foo-E<gt>bar();>
 
 
 文档编码 =encoding type
