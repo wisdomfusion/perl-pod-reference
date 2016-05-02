@@ -159,6 +159,7 @@ C< =headI<x> >
 不过
 
 C<<< open(X, ">>thing.dat") || die $! >>>
+C<< open(X, ">>thing.dat") || die $! >>
 C<< $foo->bar(); >>
 
 但是
