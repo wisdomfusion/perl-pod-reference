@@ -132,7 +132,7 @@ C< =headI<x> >
 
 类似 HTML/XML 的实体
 
-=item C<< F<filename> >> -- 文件名
+=item C<<< F<filename> >>> -- 文件名
 
 =item C<< S<text> >> -- 禁目换行
 
