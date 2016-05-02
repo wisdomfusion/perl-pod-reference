@@ -23,7 +23,7 @@ POD 是一种简单的文本文档格式，它定义了一系列标记，用于�
 样，如果你用 POD 转换工具去解析这些代码文件，它会忽略代码部分，转而去处理 POD
 文档，这样，极大地方便了我们代码的注释和文档生成。
 
-POD 文档在 Perl 中随处可见，最常用的，比如 perldoc 查看 Perl 
+POD 文档在 Perl 中随处可见，最常用的，比如 perldoc 查看 Perl 文档：
 
     perldoc LWP
 
@@ -66,14 +66,17 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
 
 标题 =head<标题级别>
 
-This tag formats the paragraph that follows as a heading. The level is determined by a number that directly follows =head.  In other words, you'll have to replace the x  in =headx for the level you want. For example, a top level heading would be
+C< =headI<x> >
 
     =head1 一级标题
-    
     =head2 二级标题
-
+    =head3 三级标题
+    =head4 四级标题
+    ...
 
 项目编号 =item, =over, =back
+
+<li>, <ol> / <ul>, </ol> / </ul>
 
     =over 4
 
@@ -103,44 +106,43 @@ This tag formats the paragraph that follows as a heading. The level is determine
 
 =over 4
 
-=item C<I<text>> -- 斜体
+=item C<< I<text> >> -- 斜体
 
 用于强调和参数
 
-=item C<B<text>> -- 加粗
+=item C<< B<text> >> -- 加粗
 
 用于强调、开关、程序或其他
 
-=item C<C<code here>> -- 代码
+=item C<< C<code here> >> -- 代码
 
-=item C<L<name>> -- 链接
+=item C<< L<name> >> -- 链接
 
 =over 8
 
-=item C<L<name>>
+=item C<< L<name> >>
 
-=item C<L<name/"sec">> 或 C<L<name/sec>>
+=item C<< L<name/"sec"> >> 或 C<< L<name/sec> >>
 
-=item C<L</"sec">> 或 C<L<name/sec>>
+=item C<< L</"sec"> >> 或 C<< L<name/sec> >>
 
 =back
 
-=item C<E<escape>> -- 字符转义
+=item C<< E<escape> >> -- 字符转义
 
 类似 HTML/XML 的实体
 
-=item C<F<filename>> -- 文件名
+=item C<< F<filename> >> -- 文件名
 
-=item C<S<text>> -- 禁目换行
+=item C<< S<text> >> -- 禁目换行
 
-如 C<S<$x ? $y : $z>>
+如 C<< S<$x ? $y : $z> >>
 
-=item C<X<topic name>> -- 索引名
+=item C<< X<topic name> >> -- 索引名
 
-=item C<Z<>>
+=item C<< Z<> >>
 
 =back
-
 
 
 文档编码 =encoding type
@@ -160,7 +162,7 @@ This tag formats the paragraph that follows as a heading. The level is determine
 
 代码中使用 POD 时最重要的是 =cut 这个标记，不管是标题还是自定义的文档块，都要有 =cut 结束该文档块。代码中可以使用 =headx 这种标题标记，记住结束标记 =cut，同样，自定义的文档块 ={自定义标记} 结束时也不能忘了加 =cut。如下，展示了一个文档中使用 POD 的实例：
 
-
+实例
 
 有时我们为了快速测试代码效果，我们也可以在代码底部添加 POD 文档区，作为 <DATA> 文件句柄的输入内容，当然，也可以直接使用 __END__ 或 __DATA__ 。
 
@@ -180,16 +182,16 @@ CPAN 上有很多 POD 解析模块，这里罗列几个推荐模块：
 
 =over 4
 
-=item * Pod::Simple - POD 解析框架
+=item * L<Pod::Simple> - POD 解析框架
 
-=item * Test::Pod - 检测 POD 文件中的语法错误
+=item * L<Test::Pod> - 检测 POD 文件中的语法错误
 
-=item * Pod::Weaver weave together a Pod document from an outline.
+=item * L<Pod::Weaver> weave together a Pod document from an outline.
 
-=item * Pod::Perldoc - perldoc 命令使用的 POD 模块，用于查找 POD 文档中所需的
+=item * L<Pod::Perldoc> - perldoc 命令使用的 POD 模块，用于查找 POD 文档中所需的
 Perl 文档。
 
-=item * Pod::Html - 把 POD 文档转换为 HTML 文件，Perl 核心模块，提供 pod2html
+=item * L<Pod::Html> - 把 POD 文档转换为 HTML 文件，Perl 核心模块，提供 pod2html
 命令。
 
 =back
@@ -226,14 +228,12 @@ pod2html CGI.pm -outfile CGIpm.html
 
 =over 4
 
-=item * pod2fm - 把 POD 文档转换为 FrameMaker 格式
+=item * B<pod2fm> - 把 POD 文档转换为 FrameMaker 格式
 
-=item * pod2latex - 转换为 LaTeX 格式
+=item * B<pod2latex> - 转换为 LaTeX 格式
 
-=item * pod2man - 转换成 UNIX man 手册格式
+=item * B<pod2man> - 转换成 UNIX man 手册格式
 
-=item * pod2text - 转换成文本文档
+=item * B<pod2text> - 转换成文本文档
 
 =back
-
-
