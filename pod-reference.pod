@@ -128,7 +128,7 @@ C< =headI<x> >
 
 =back
 
-=item C<< E<escape> >> -- 字符转义
+=item C<< EE<lt>escapeE<gt> >> -- 字符转义
 
 类似 HTML/XML 的实体
 
