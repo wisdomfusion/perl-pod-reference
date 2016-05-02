@@ -158,28 +158,23 @@ C< =headI<x> >
 
 再看一个例子：
 
-C<<< open(X, ">>thing.dat") || die $! >>>
-C<< $foo->bar(); >>
+    C<<< open(X, ">>thing.dat") || die $! >>>
+    C<< $foo->bar(); >>
 
 怎么样，看上去比下面这个清晰多了，个人认为下面这个 POD 标记和代码一眼看去分不
 开，书写不太方便：
 
-C<open(X, "E<gt>E<gt>thing.dat") || die $!>
-C<$foo-E<gt>bar();>
+    C<open(X, "E<gt>E<gt>thing.dat") || die $!>
+    C<$foo-E<gt>bar();>
 
 
-文档编码 C<< =encoding I<encodingname> >>
+文档编码 C<< B<=encoding> I<encodingname> >>
 
     =encoding latin1
-    
     =encoding utf8
-    
     =encoding koi8-r
-    
     =encoding ShiftJIS
-    
     =encoding big5
-
 
 在 Perl 代码中使用 POD
 
