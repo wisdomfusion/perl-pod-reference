@@ -25,7 +25,7 @@ POD 是一种简单的文本文档格式，它定义了一系列标记，用于�
 
 POD 文档在 Perl 中随处可见，最常用的，比如 perldoc 查看 Perl 文档：
 
-    perldoc LWP
+    perldoc LWP::UserAgent
 
 POD 文档转换工具后文会总结。
 
@@ -33,7 +33,7 @@ POD 文档转换工具后文会总结。
 
 POD 是一种类似简单的标记语法文档，文档由以下3种类型的段落构成：
 
-=over 4
+=over
 
 =item Ordinary 段落
 
@@ -63,10 +63,11 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
     =encoding type
     =cut
 
+接下来我们一个个具体看看这些标记怎么用。
 
-标题 =head<标题级别>
+=head3 标题 =head<标题级别>
 
-C< =headI<x> >
+标题 C<< =headI<x> >> 是文档结构划分的重要标记，不同级别的标题如下：
 
     =head1 一级标题
     =head2 二级标题
@@ -74,9 +75,12 @@ C< =headI<x> >
     =head4 四级标题
     ...
 
-项目编号 =item, =over, =back
+=head3 项目编号 =item, =over, =back
 
-<li>, <ol> / <ul>, </ol> / </ul>
+项目编号对于熟悉 HTML 的人来说，相当于 <li>, <ol> | <ul>, </ol> | </ul>，要产
+生一个列表，用 C<< =over >> 开始，以 C<< =item >> 开头的为一个个列表项，然后用
+C<< =back >> 结尾。不表在 C<< =over .. =back >> 之外使用 C<< =item >>，C<<
+=over n >> 后面的 n 用来表示缩进的字数，单位是 em，默认是 4。
 
     =over 4
 
@@ -102,7 +106,44 @@ C< =headI<x> >
 
     =back
 
-文本格式化
+=head3 C<< =cut >> 和 C<< =pod >>
+
+这是代码文件中使用 POD 的最常用标记，以 C<< =pod >> 开头， C<< =cut >> 结尾
+POD。 
+
+=head3 C<< =for I<formatname> >>, C<< =begin I<formatname> >> 和 C<< =end I<formatname> >>
+
+以 C<< =for >> 开头的一段文字会被 POD 解释器忽略，直接交给指定的格式化语言来处
+理。例如，下面标明一段 html 文字：
+
+    =for html <hr><img src="thang.png">
+    <p>This is a raw HTML paragraph.</p>
+
+这里要注意 POD 中，空一行为一个段落，上面这个 HTML 为一个整落。C<< =begin >> 和 C<< =end >> 所做的事情是一样的，只不过，不再局限于某个段落，如：
+
+    =begin html
+
+    <br>Figure 1.<br><IMG SRC="figure1.png"><br>
+
+    =end html
+
+    =begin text
+
+      ---------------
+      |  foo        |
+      |        bar  |
+      ---------------
+
+    ^^^^ Figure 1. ^^^^
+
+    =end text
+
+目前支技的格式有：roff, man, latex, tex, text, html。如果想添加 POD 注释，也就是添加被 POD 文件转换器忽略的文字，格式名称用 comment 即可：
+
+    =for comment
+    Make sure that all the available options are documented!
+
+=head3 文本格式化
 
 =over 4
 
@@ -144,6 +185,8 @@ C< =headI<x> >
 
 =back
 
+=head3 文档中插入代码片段
+
 文档中出现代码和命令是常有的事，有时候可能会觉得字符转义比较头疼。是的，下面这
 几行代码效果都是 C<$a E<lt>=E<gt> $b>：
 
@@ -161,17 +204,15 @@ C< =headI<x> >
 
 再看一个例子：
 
-    C<<< open(X, ">>thing.dat") || die $! >>>
-    C<< $foo->bar(); >>
-
-怎么样，看上去比下面这个清晰多了，个人认为下面这个 POD 标记和代码一眼看去分不
-开，书写不太方便： 
-
     C<open(X, "E<gt>E<gt>thing.dat") || die $!>
     C<$foo-E<gt>bar();>
 
+乍一看，代码和 POD 标记混在一起，下面这种写法可读性更强：
 
-文档编码 C<< B<=encoding> I<encodingname> >>
+    C<<< open(X, ">>thing.dat") || die $! >>>
+    C<< $foo->bar(); >>
+
+=head3 文档编码 C<< B<=encoding> I<encodingname> >>
 
     =encoding latin1
     =encoding utf8
