@@ -144,12 +144,14 @@ C< =headI<x> >
 
 =back
 
-C<$a E<lt>=E<gt> $b>
-C<< $a <=> $b >>
-C<<< $a <=> $b >>>
-C<<<<  $a <=> $b     >>>>
-C<$a E<lt>=E<gt> $b>
-C<< $a E<lt>=E<gt> $b >>
+有时候可能会觉得字符转义比较头疼，是的，下面这几行代码效果都是 C<$a
+E<lt>=E<gt> $b>：
+
+    C<$a E<lt>=E<gt> $b>
+    C<< $a <=> $b >>
+    C<<< $a <=> $b >>>
+    C<<<<  $a <=> $b     >>>>
+    C<< $a E<lt>=E<gt> $b >>
 
 
     open(X, ">>thing.dat") || die $!
