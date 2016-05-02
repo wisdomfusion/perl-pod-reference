@@ -161,9 +161,9 @@ open(X, ">>thing.dat") || die $!
 
 $foo->bar();
 
-open(X, ">>thing.dat") || die $!
+C<open(X, ">>thing.dat") || die $!>
 
-$foo->bar();
+C<$foo->bar();>
 
 C<<< open(X, ">>thing.dat") || die $! >>>
 
