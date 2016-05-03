@@ -4,3 +4,10 @@
 
 perl pod 中文参考手册 - the Plain Old Documentation format
 
+=over
+
+=item * L<POD 中文参考手册|https://github.com/WisdomFusion/perl-pod-reference/blob/master/pod-reference.pod>
+
+=item * L<Perl 模块 POD 模板|https://github.com/WisdomFusion/perl-pod-reference/blob/master/module-pod-template.pod>
+
+=back
