@@ -147,7 +147,7 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
 
 =item * C<< LE<lt>name/"sec"E<gt> >> 或 C<< LE<lt>name/secE<gt> >>
 
-
+链接到其它文档中的某个“部分”(section)，如，C<< LE<lt>perlsyn/"For Loops"E<gt> >>。
 
 =item * C<< LE<lt>/"sec"E<gt> >> 或 C<< LE<lt>name/secE<gt> >>
 
@@ -175,7 +175,7 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
 
 =item * C<< LE<lt>scheme:...E<gt> >> 或 C<< LE<lt>text|scheme:...E<gt> >>
 
-链接到一个网址 URL，如，C<< LE<lt>http://www.perl.org/E<gt> 或 C<< LE<lt>Perl 官方网站|http://www.perl.org/E<gt> >>。
+链接到一个网址 URL，如，C<< LE<lt>http://www.perl.org/E<gt> >> 或 C<< LE<lt>Perl 官方网站|http://www.perl.org/E<gt> >>。
 
 =item * C<< EE<lt>escapeE<gt> >> -- 字符转义
 
