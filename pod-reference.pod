@@ -106,11 +106,6 @@ C<< =back >> 结尾。不表在 C<< =over .. =back >> 之外使用 C<< =item >>�
 
     =back
 
-=head3 C<< =cut >> 和 C<< =pod >>
-
-这是代码文件中使用 POD 的最常用标记，以 C<< =pod >> 开头， C<< =cut >> 结尾
-POD。 
-
 =head3 C<< =for I<formatname> >>, C<< =begin I<formatname> >> 和 C<< =end I<formatname> >>
 
 以 C<< =for >> 开头的一段文字会被 POD 解释器忽略，直接交给指定的格式化语言来处
@@ -145,29 +140,47 @@ POD。
 
 =head3 文本格式化
 
-=over 4
+=over
 
 =item C<< IE<lt>textE<gt> >> -- 斜体
 
-用于强调和参数
+用于强调或参数。
 
 =item C<< BE<lt>textE<gt> >> -- 加粗
 
-用于强调、开关、程序或其他
+用于强调、开关、程序或其他。
 
 =item C<< CE<lt>code hereE<gt> >> -- 代码
 
 =item C<< LE<lt>nameE<gt> >> -- 链接
 
-=over 8
+啊，是的，文档中文本格式很重要，但技术文档中链接也很多，这
+里有必要细说一下，幸运的是，POD 对链接的支持很强的，OK, come on.
+
+=over
 
 =item C<< LE<lt>nameE<gt> >>
 
+链接到 Perl 文档（如 C<< LE<lt>Net::PingE<gt> >>），同样，也可以链接到 UNIX
+man 手册，如，C<< LE<lt>crontab(5)E<gt> >>。
+
 =item C<< LE<lt>name/"sec"E<gt> >> 或 C<< LE<lt>name/secE<gt> >>
+
+链接到其它文档中的某个“部分”(section)，如，C<< LE<lt>perlsyn/"For Loops"E<gt>
+>>。
 
 =item C<< LE<lt>/"sec"E<gt> >> 或 C<< LE<lt>name/secE<gt> >>
 
+链接到当前文档的某个部分，如 C<< LE<lt>/"Object Methods"E<gt> >>。
+
 =back
+
+这里所说的“部分”可以是标题，也可能是列表项，如 C<< LE<lt>perlvar/$.E<gt> >> 或
+C<< LE<lt>perlvar/"$."E<gt> >> 都是链接到 perlvar 中的 C<< =item $. >> 列表项。
+同理，C<< LE<lt>perlsyn/For LoopsE<gt> >> 或 C<< LE<lt>perlsyn/"For
+Loops"E<gt> >> 都是链接到 perlsyn 中的 C<< =head2 For Loops >> 这个标题处。
+
+
 
 =item C<< EE<lt>escapeE<gt> >> -- 字符转义
 
@@ -220,11 +233,33 @@ POD。
     =encoding ShiftJIS
     =encoding big5
 
-在 Perl 代码中使用 POD
+本文在 git push 到 GitHut 之前也是添加了编码的，要不，中文会乱码的。
 
-代码中使用 POD 时最重要的是 =cut 这个标记，不管是标题还是自定义的文档块，都要有 =cut 结束该文档块。代码中可以使用 =headx 这种标题标记，记住结束标记 =cut，同样，自定义的文档块 ={自定义标记} 结束时也不能忘了加 =cut。如下，展示了一个文档中使用 POD 的实例：
+=head3 在 Perl 代码中使用 POD
 
-实例
+代码中使用 POD 时最重要的是 C<< =cut >> 这个标记，不管是标题还是自定义的文档块，
+都要有 C<< =cut >> 结束该文档块。代码中可以使用 C<< =headI<x> >> 这种标题标记，
+记住结束标记 C<< =cut >>，最常用的是以 C<< =pod >> 打头。同样，也可以使用自定
+义的文档块 C<< ={自定义标记} >>，当然，结束时也不能忘了加 =cut。如下，展示了一
+个文档中使用 POD 的实例：
+
+    =item stuff()
+
+    This function does stuff.
+
+    =cut
+
+    sub stuff {
+      ...
+    }
+
+    =pod
+
+    Remember to check its return value, as in:
+
+    C<< stuff() || die "Couldn't do stuff!"; >>
+
+    =cut
 
 有时我们为了快速测试代码效果，我们也可以在代码底部添加 POD 文档区，作为 <DATA> 文件句柄的输入内容，当然，也可以直接使用 __END__ 或 __DATA__ 。
 
@@ -232,11 +267,7 @@ POD。
     =head1 NAME
     Time::Local - efficiently compute time from local and GMT time
 
-模块 POD 文档模板：点这里
-
-=head2 最佳实践
-
-
+这里总结了一个模块 POD 文档模板：C<点这里|./module-pod-template.pod>。
 
 =head2 POD 常用模块
 
@@ -262,27 +293,13 @@ Perl 文档。
 
 =head3 使用 perldoc
 
-Perldoc is a pod utility that formats and displays pod information. You use it from the command line, and the syntax is like this
-
 perldoc [options] docname
-
-Docname is the name of the file you want to view.  If you would like to see the information on CGI.pm, for instance, you'd type
 
 perldoc CGI.pm
 
-You'd have to modify the path, of course, but the documentation in all its glory would be made available to you.
-
-As I mentioned earlier, you can use perldoc for a quick reference to Perl functions. Type
-
 perldoc -f function_name
 
-and you'll have all the information available on the function usage and parameters. Its really handy for learning the functions, as well as for those times when your brain pops into neutral at a critical moment. There are other options for using perldoc, and you can learn more about them by typing
-
-perldoc perldoc
-
 =head3 使用 pod2html
-
-Another good pod utility to know about is pod2html. It converts pod information into HTML format so you can see it from your browser. For example, if you'd like the documentation for CGI.pm saved to an HTML file, you'd have all that wonderful information available when you need it, all nicely formatted with links, you'd type:
 
 pod2html CGI.pm -outfile CGIpm.html
 
