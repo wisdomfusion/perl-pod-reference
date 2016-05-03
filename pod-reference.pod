@@ -22,15 +22,15 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
 
 =over
 
-=item Ordinary 段落
+=item * Ordinary 段落
 
 这种段落是最常用的行文段落，可以添加一些加粗、斜体、代码、链接等格式的文本
 
-=item Verbatim 段落
+=item * Verbatim 段落
 
 这种段落通常用于显示代码块或是其他不需要格式“原样显示”的文本
 
-=item Command 段落
+=item * Command 段落
 
 这就是上文所说的标记们，所有的标记都以 = 开头，紧跟命令（中间不能带空格的），命令列表如下：
 
@@ -125,31 +125,31 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
 
 =over
 
-=item C<< IE<lt>textE<gt> >> -- 斜体
+=item * C<< IE<lt>textE<gt> >> -- 斜体
 
 用于强调或参数。
 
-=item C<< BE<lt>textE<gt> >> -- 加粗
+=item * C<< BE<lt>textE<gt> >> -- 加粗
 
 用于强调、开关、程序或其他。
 
-=item C<< CE<lt>code hereE<gt> >> -- 代码
+=item * C<< CE<lt>code hereE<gt> >> -- 代码
 
-=item C<< LE<lt>nameE<gt> >> -- 链接
+=item * C<< LE<lt>nameE<gt> >> -- 链接
 
 啊，是的，文档中文本格式很重要，但技术文档中链接也很多，这里有必要细说一下，幸运的是，POD 对链接的支持很强的，OK, come on.
 
 =over
 
-=item C<< LE<lt>nameE<gt> >>
+=item * C<< LE<lt>nameE<gt> >>
 
 链接到 Perl 文档（如 C<< LE<lt>Net::PingE<gt> >>），同样，也可以链接到 UNIX man 手册，如，C<< LE<lt>crontab(5)E<gt> >>。
 
-=item C<< LE<lt>name/"sec"E<gt> >> 或 C<< LE<lt>name/secE<gt> >>
+=item * C<< LE<lt>name/"sec"E<gt> >> 或 C<< LE<lt>name/secE<gt> >>
 
-链接到其它文档中的某个“部分”(section)，如，C<< LE<lt>perlsyn/"For Loops"E<gt> >>。
 
-=item C<< LE<lt>/"sec"E<gt> >> 或 C<< LE<lt>name/secE<gt> >>
+
+=item * C<< LE<lt>/"sec"E<gt> >> 或 C<< LE<lt>name/secE<gt> >>
 
 链接到当前文档的某个部分，如 C<< LE<lt>/"Object Methods"E<gt> >>。
 
@@ -161,11 +161,11 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
 
 =over
 
-=item C<< LE<lt>text|nameE<gt> >>
+=item * C<< LE<lt>text|nameE<gt> >>
 
-=item C<< LE<lt>text|name/"sec"E<gt> >> 或 C<< LE<lt>text|name/secE<gt> >>
+=item * C<< LE<lt>text|name/"sec"E<gt> >> 或 C<< LE<lt>text|name/secE<gt> >>
 
-=item C<< LE<lt>text|"sec"E<gt> >> 或 C<< LE<lt>text|/secE<gt> >> 或 C<< LE<lt>text|"sec"E<gt> >>
+=item * C<< LE<lt>text|"sec"E<gt> >> 或 C<< LE<lt>text|/secE<gt> >> 或 C<< LE<lt>text|"sec"E<gt> >>
 
 =back
 
@@ -173,21 +173,21 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
 
 =over
 
-=item C<< LE<lt>scheme:...E<gt> >> 或 C<< LE<lt>text|scheme:...E<gt> >>
+=item * C<< LE<lt>scheme:...E<gt> >> 或 C<< LE<lt>text|scheme:...E<gt> >>
 
 链接到一个网址 URL，如，C<< LE<lt>http://www.perl.org/E<gt> 或 C<< LE<lt>Perl 官方网站|http://www.perl.org/E<gt> >>。
 
-=item C<< EE<lt>escapeE<gt> >> -- 字符转义
+=item * C<< EE<lt>escapeE<gt> >> -- 字符转义
 
 类似 HTML/XML 的实体
 
-=item C<< FE<lt>filenameE<gt> >> -- 文件名
+=item * C<< FE<lt>filenameE<gt> >> -- 文件名
 
-=item C<< SE<lt>textE<gt> >> -- 禁目换行
+=item * C<< SE<lt>textE<gt> >> -- 禁目换行
 
 如 C<< SE<lt>$x ? $y : $zE<gt> >>
 
-=item C<< XE<lt>topic nameE<gt> >> -- 索引名
+=item * C<< XE<lt>topic nameE<gt> >> -- 索引名
 
 =back
 
