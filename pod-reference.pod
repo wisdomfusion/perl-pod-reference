@@ -181,7 +181,29 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
 
 =item * C<< EE<lt>escapeE<gt> >> -- 字符转义
 
-类似 HTML/XML 的实体
+类似 HTML/XML 的实体：
+
+=over
+
+=item * C<< EE<lt>ltE<gt> >> -- 小于号 <
+
+=item * C<< EE<lt>gtE<gt> >> -- 大于号 >
+
+=item * C<< EE<lt>verbarE<gt> >> -- 管道 |
+
+=item * C<< EE<lt>solE<gt> >> -- 斜线 /
+
+以上4种转义主要用于代码当中，C<< LE<lt>...E<gt> >>。
+
+=item * C<< EE<lt>htmlnameE<gt> >>
+
+HTML 非数字实体转换，如 C<< EE<lt>copyE<gt> >>，就是 HTML 中的 C<&copy;> 实体。
+
+=item * C<< EE<lt>numberE<gt> >>
+
+以 C<number> 编码的 ASCII/Latin-1/Unicode 字符
+
+=back
 
 =item * C<< FE<lt>filenameE<gt> >> -- 文件名
 
