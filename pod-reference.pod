@@ -177,6 +177,8 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
 
 链接到一个网址 URL，如，C<< LE<lt>http://www.perl.org/E<gt> >> 或 C<< LE<lt>Perl 官方网站|http://www.perl.org/E<gt> >>。
 
+=back
+
 =item * C<< EE<lt>escapeE<gt> >> -- 字符转义
 
 类似 HTML/XML 的实体
