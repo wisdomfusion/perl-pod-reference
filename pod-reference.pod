@@ -4,7 +4,7 @@
 
 POD 是 Perl 及模块使用的文档格式，全称 Plain Old Documentation。Perl 其中一个亮点特性，就是 POD 这个便捷的文档格式，无论是简单文档或说明，还是撰写整本书，都没有问题。本文将重点总结 POD 语法，同时会罗列一些 POD 周边的工具。
 
-=head2 简介
+=head2 1. 简介
 
 尽管绝大多程序猿/媛们都希望自己写的一手清晰、漂亮的文档，但多数都苦于没时间去学习现有比较“复杂”的文档处理或排版系统，而且技术文档如果想加入版本控制 Word 等文件格式肯定是不能用的。代码能够很欢快的运行，相信对大家都不是难事，我们擅长的就是编码，不是吗？但如果文档跟不长，项目时间长久以后，或是代码移交其他，或是GitHub 上进行社会化编程，没有文档可是不行的。幸运的是，Perl 提供了这样一种简单而又优雅的文档格式，就是 POD。
 
@@ -16,7 +16,9 @@ POD 文档在 Perl 中随处可见，最常用的，比如 perldoc 查看 Perl �
 
 POD 文档转换工具后文会总结。
 
-=head2 POD 语法
+=head2 2. POD 语法
+
+=head3 2.1. 段落
 
 POD 是一种类似简单的标记语法文档，文档由以下3种类型的段落构成：
 
@@ -52,7 +54,7 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
 
 接下来我们一个个具体看看这些标记怎么用。
 
-=head3 标题 =head<标题级别>
+=head3 2.2. 标题 =head<标题级别>
 
 标题 C<< =headI<x> >> 是文档结构划分的重要标记，不同级别的标题如下：
 
@@ -62,7 +64,7 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
     =head4 四级标题
     ...
 
-=head3 项目编号 =item, =over, =back
+=head3 2.3. 项目编号 =item, =over, =back
 
 项目编号对于熟悉 HTML 的人来说，相当于 <li>, <ol> | <ul>, </ol> | </ul>，要产生一个列表，用 C<< =over >> 开始，以 C<< =item >> 开头的为一个个列表项，然后用C<< =back >> 结尾。不表在 C<< =over .. =back >> 之外使用 C<< =item >>，C<<=over n >> 后面的 n 用来表示缩进的字数，单位是 em，默认是 4。
 
@@ -90,7 +92,8 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
 
     =back
 
-=head3 C<< =for I<formatname> >>, C<< =begin I<formatname> >> 和 C<< =end I<formatname> >>
+=head3 2.4. C<< =for I<formatname> >>, C<< =begin I<formatname> >> 和 C<< =end
+I<formatname> >>
 
 以 C<< =for >> 开头的一段文字会被 POD 解释器忽略，直接交给指定的格式化语言来处理。例如，下面标明一段 html 文字：
 
@@ -121,7 +124,7 @@ POD 是一种类似简单的标记语法文档，文档由以下3种类型的段
     =for comment
     Make sure that all the available options are documented!
 
-=head3 文本格式化
+=head3 2.5. 文本格式化
 
 =over
 
@@ -215,7 +218,7 @@ HTML 非数字实体转换，如 C<< EE<lt>copyE<gt> >>，就是 HTML 中的 C<&
 
 =back
 
-=head3 文档中插入代码片段
+=head3 2.6. 文档中插入代码片段
 
 文档中出现代码和命令是常有的事，有时候可能会觉得字符转义比较头疼。是的，下面这几行代码效果都是 C<$a E<lt>=E<gt> $b>：
 
@@ -238,7 +241,7 @@ HTML 非数字实体转换，如 C<< EE<lt>copyE<gt> >>，就是 HTML 中的 C<&
     C<<< open(X, ">>thing.dat") || die $! >>>
     C<< $foo->bar(); >>
 
-=head3 文档编码 C<< B<=encoding> I<encodingname> >>
+=head3 2.7. 文档编码 C<< B<=encoding> I<encodingname> >>
 
     =encoding latin1
     =encoding utf8
@@ -248,7 +251,7 @@ HTML 非数字实体转换，如 C<< EE<lt>copyE<gt> >>，就是 HTML 中的 C<&
 
 本文在 git push 到 GitHut 之前也是添加了 utf8 编码的，否则，中文会乱码的。
 
-=head3 在 Perl 代码中使用 POD
+=head3 2.8. 在 Perl 代码中使用 POD
 
 代码中使用 POD 时最重要的是 C<< =cut >> 这个标记，不管是标题还是自定义的文档块，都要有 C<< =cut >> 结束该文档块。代码中可以使用 C<< =headI<x> >> 这种标题标记，记住结束标记 C<< =cut >>，最常用的是以 C<< =pod >> 打头。同样，也可以使用自定义的文档块 C<< ={自定义标记} >>，当然，结束时也不能忘了加 =cut。如下，展示了一个文档中使用 POD 的实例：
 
@@ -276,11 +279,11 @@ HTML 非数字实体转换，如 C<< EE<lt>copyE<gt> >>，就是 HTML 中的 C<&
     =head1 NAME
     Time::Local - efficiently compute time from local and GMT time
 
-=head2 Perl 模块 POD 文档模板
+=head2 3. Perl 模块 POD 文档模板
 
 L<Perl 模块 POD 文档模板|https://github.com/WisdomFusion/perl-pod-reference/blob/master/module-pod-template.pod>。
 
-=head2 POD 常用模块
+=head2 4. POD 常用模块
 
 CPAN 上有很多 POD 解析模块，这里罗列几个推荐模块：
 
@@ -298,9 +301,9 @@ CPAN 上有很多 POD 解析模块，这里罗列几个推荐模块：
 
 =back
 
-=head2 POD 相关工具
+=head2 5. POD 相关工具
 
-=head3 使用 perldoc 查询 Perl 文档
+=head3 5.1. 使用 perldoc 查询 Perl 文档
 
 命令格式如下：
 
@@ -335,7 +338,7 @@ Hah, 如果是不知道如何使用 perldoc 命令，可以执行如下命令看
 
     perldoc perldoc
 
-=head3 使用 pod2html
+=head3 5.2. 使用 pod2html
 
 pod2html 命令可以把 *.pod 文件转换为 *.html 文件，即输出成 HTML。具体用法可以查看 perldoc：
 
@@ -353,7 +356,7 @@ Perl 代码或模块中引用 L<Pod::HTML> 后也可以使用 C<pod2html> 这个
              "--infile=foo.pod",
              "--outfile=/perl/nmanual/foo.html");
 
-=head3 其他 POD 工具
+=head3 5.3. 其他 POD 工具
 
 =over
 
@@ -367,10 +370,11 @@ Perl 代码或模块中引用 L<Pod::HTML> 后也可以使用 C<pod2html> 这个
 
 =back
 
-=head2 参考文档
+=head2 6. 参考文档
         
 =over
 
 =item * C<perldoc perlpod>
 
 =back
+
